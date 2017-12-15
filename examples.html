@@ -1,0 +1,1444 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CadQuery Examples &mdash; CadQuery Documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="CadQuery Documentation" href="index.html"/>
+        <link rel="next" title="CadQuery API Reference" href="apireference.html"/>
+        <link rel="prev" title="CadQuery Scripts and Object Output" href="fileformat.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CadQuery
+          
+
+          
+            
+            <img src="_static/cqlogo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing CadQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">CadQuery QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="designprinciples.html">CadQuery Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">CadQuery Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">CadQuery Scripts and Object Output</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">CadQuery Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-rectangular-plate">Simple Rectangular Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plate-with-hole">Plate with Hole</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#an-extruded-prismatic-solid">An extruded prismatic solid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-profiles-using-lines-and-arcs">Building Profiles using lines and arcs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#moving-the-current-working-point">Moving The Current working point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-point-lists">Using Point Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polygons">Polygons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polylines">Polylines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-an-edge-with-a-spline">Defining an Edge with a Spline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mirroring-symmetric-geometry">Mirroring Symmetric Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mirroring-3d-objects">Mirroring 3D Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-workplanes-on-faces">Creating Workplanes on Faces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#locating-a-workplane-on-a-vertex">Locating a Workplane on a vertex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#offset-workplanes">Offset Workplanes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotated-workplanes">Rotated Workplanes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-construction-geometry">Using construction Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shelling-to-create-thin-features">Shelling To Create Thin features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-lofts">Making Lofts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-counter-bored-and-counter-sunk-holes">Making Counter-bored and counter-sunk holes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rounding-corners-with-fillet">Rounding Corners with Fillet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-parametric-bearing-pillow-block">A Parametric Bearing Pillow Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#splitting-an-object">Splitting an Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-classic-occ-bottle">The Classic OCC Bottle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-parametric-enclosure">A Parametric Enclosure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lego-brick">Lego Brick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#braille-example">Braille Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#panel-with-various-connector-holes">Panel With Various Connector Holes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apireference.html">CadQuery API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectors.html">String Selectors Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectors.html#combining-selectors">Combining Selectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classreference.html">CadQuery Class Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cqgi.html">The CadQuery Gateway Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending CadQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">RoadMap:  Planned Features</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">CadQuery</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>CadQuery Examples</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cadquery-examples">
+<span id="examples"></span><h1><a class="toc-backref" href="#id1">CadQuery Examples</a><a class="headerlink" href="#cadquery-examples" title="Permalink to this headline">¶</a></h1>
+<p>The examples on this page can help you learn how to build objects with CadQuery.</p>
+<p>They are organized from simple to complex, so working through them in order is the best way to absorb them.</p>
+<p>Each example lists the api elements used in the example for easy reference.
+Items introduced in the example are marked with a <strong>!</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You may want to work through these examples by pasting the text into a scratchpad on the live website.
+If you do, make sure to take these steps so that they work:</p>
+<blockquote class="last">
+<div><ol class="arabic simple">
+<li>paste the content into the build() method, properly intented, and</li>
+<li>add the line &#8216;return result&#8217; at the end. The samples below are autogenerated, but they use a different
+syntax than the models on the website need to be.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We strongly recommend installing FreeCAD, and the   <a class="reference external" href="https://github.com/jmwright/cadquery-freecad-module">cadquery-freecad-module</a>,
+so that you can work along with these examples interactively. See <a class="reference internal" href="installation.html#installation"><span>Installing CadQuery</span></a> for more info.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>You have to have an svg capable browser to view these!</li>
+</ul>
+</div>
+<div class="contents topic" id="list-of-examples">
+<p class="topic-title first">List of Examples</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cadquery-examples" id="id1">CadQuery Examples</a><ul>
+<li><a class="reference internal" href="#simple-rectangular-plate" id="id2">Simple Rectangular Plate</a></li>
+<li><a class="reference internal" href="#plate-with-hole" id="id3">Plate with Hole</a></li>
+<li><a class="reference internal" href="#an-extruded-prismatic-solid" id="id4">An extruded prismatic solid</a></li>
+<li><a class="reference internal" href="#building-profiles-using-lines-and-arcs" id="id5">Building Profiles using lines and arcs</a></li>
+<li><a class="reference internal" href="#moving-the-current-working-point" id="id6">Moving The Current working point</a></li>
+<li><a class="reference internal" href="#using-point-lists" id="id7">Using Point Lists</a></li>
+<li><a class="reference internal" href="#polygons" id="id8">Polygons</a></li>
+<li><a class="reference internal" href="#polylines" id="id9">Polylines</a></li>
+<li><a class="reference internal" href="#defining-an-edge-with-a-spline" id="id10">Defining an Edge with a Spline</a></li>
+<li><a class="reference internal" href="#mirroring-symmetric-geometry" id="id11">Mirroring Symmetric Geometry</a></li>
+<li><a class="reference internal" href="#mirroring-3d-objects" id="id12">Mirroring 3D Objects</a></li>
+<li><a class="reference internal" href="#creating-workplanes-on-faces" id="id13">Creating Workplanes on Faces</a></li>
+<li><a class="reference internal" href="#locating-a-workplane-on-a-vertex" id="id14">Locating a Workplane on a vertex</a></li>
+<li><a class="reference internal" href="#offset-workplanes" id="id15">Offset Workplanes</a></li>
+<li><a class="reference internal" href="#rotated-workplanes" id="id16">Rotated Workplanes</a></li>
+<li><a class="reference internal" href="#using-construction-geometry" id="id17">Using construction Geometry</a></li>
+<li><a class="reference internal" href="#shelling-to-create-thin-features" id="id18">Shelling To Create Thin features</a></li>
+<li><a class="reference internal" href="#making-lofts" id="id19">Making Lofts</a></li>
+<li><a class="reference internal" href="#making-counter-bored-and-counter-sunk-holes" id="id20">Making Counter-bored and counter-sunk holes</a></li>
+<li><a class="reference internal" href="#rounding-corners-with-fillet" id="id21">Rounding Corners with Fillet</a></li>
+<li><a class="reference internal" href="#a-parametric-bearing-pillow-block" id="id22">A Parametric Bearing Pillow Block</a></li>
+<li><a class="reference internal" href="#splitting-an-object" id="id23">Splitting an Object</a></li>
+<li><a class="reference internal" href="#the-classic-occ-bottle" id="id24">The Classic OCC Bottle</a></li>
+<li><a class="reference internal" href="#a-parametric-enclosure" id="id25">A Parametric Enclosure</a></li>
+<li><a class="reference internal" href="#lego-brick" id="id26">Lego Brick</a></li>
+<li><a class="reference internal" href="#braille-example" id="id27">Braille Example</a></li>
+<li><a class="reference internal" href="#panel-with-various-connector-holes" id="id28">Panel With Various Connector Holes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="simple-rectangular-plate">
+<h2><a class="toc-backref" href="#id2">Simple Rectangular Plate</a><a class="headerlink" href="#simple-rectangular-plate" title="Permalink to this headline">¶</a></h2>
+<p>Just about the simplest possible example, a rectangular box</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cadquery</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code> <strong>!</strong></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="plate-with-hole">
+<h2><a class="toc-backref" href="#id3">Plate with Hole</a><a class="headerlink" href="#plate-with-hole" title="Permalink to this headline">¶</a></h2>
+<p>A rectangular box, but with a hole added.</p>
+<p>&#8220;&gt;Z&#8221; selects the top most face of the resulting box.  The hole is located in the center because the default origin
+of a working plane is at the center of the face.  The default hole depth is through the entire part.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># The dimensions of the box. These can be modified rather than changing the</span>
+<span class="c1"># object&#39;s code directly.</span>
+<span class="n">length</span> <span class="o">=</span> <span class="mf">80.0</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">60.0</span>
+<span class="n">thickness</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">center_hole_dia</span> <span class="o">=</span> <span class="mf">22.0</span>
+
+<span class="c1"># Create a box based on the dimensions above and add a 22mm center hole</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="n">center_hole_dia</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.hole()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="an-extruded-prismatic-solid">
+<h2><a class="toc-backref" href="#id4">An extruded prismatic solid</a><a class="headerlink" href="#an-extruded-prismatic-solid" title="Permalink to this headline">¶</a></h2>
+<p>Build a prismatic solid using extrusion. After a drawing operation, the center of the previous object
+is placed on the stack, and is the reference for the next operation. So in this case, the rect() is drawn
+centered on the previously draw circle.</p>
+<p>By default, rectangles and circles are centered around the previous working point.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="building-profiles-using-lines-and-arcs">
+<h2><a class="toc-backref" href="#id5">Building Profiles using lines and arcs</a><a class="headerlink" href="#building-profiles-using-lines-and-arcs" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you need to build complex profiles using lines and arcs.  This example builds a prismatic
+solid from 2-d operations.</p>
+<p>2-d operations maintain a current point, which is initially at the origin. Use close() to finish a
+closed curve.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.threePointArc()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.lineTo()</span></code> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="moving-the-current-working-point">
+<h2><a class="toc-backref" href="#id6">Moving The Current working point</a><a class="headerlink" href="#moving-the-current-working-point" title="Permalink to this headline">¶</a></h2>
+<p>In this example, a closed profile is required, with some interior features as well.</p>
+<p>This example also demonstrates using multiple lines of code instead of longer chained commands,
+though of course in this case it was possible to do it in one long line as well.</p>
+<p>A new work plane center can be established at any point.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="c1">#current point is the center of the circle, at (0,0)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># new work center is  (1.5, 0.0)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span> <span class="c1"># new work center is ( 0.0, 1.5).</span>
+<span class="c1">#the new center is specified relative to the previous center, not global coordinates!</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.center()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="using-point-lists">
+<h2><a class="toc-backref" href="#id7">Using Point Lists</a><a class="headerlink" href="#using-point-lists" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you need to create a number of features at various locations, and using <code class="xref py py-meth docutils literal"><span class="pre">Workplane.center()</span></code>
+is too cumbersome.</p>
+<p>You can use a list of points to construct multiple objects at once. Most construction methods,
+like <code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code> and <code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code>, will operate on multiple points if they are on the stack</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>                       <span class="c1"># make base</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">pushPoints</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>     <span class="c1"># now four points are on the stack</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span> <span class="mf">0.25</span> <span class="p">)</span>                                      <span class="c1"># circle will operate on all four points</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.125</span> <span class="p">)</span>                               <span class="c1"># make prism</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.points()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="polygons">
+<h2><a class="toc-backref" href="#id8">Polygons</a><a class="headerlink" href="#polygons" title="Permalink to this headline">¶</a></h2>
+<p>You can create polygons for each stack point if you would like. Useful in 3d printers whos firmware does not
+correct for small hole sizes.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">pushPoints</span> <span class="p">(</span> <span class="p">[</span> <span class="p">(</span> <span class="mi">0</span><span class="p">,</span><span class="mf">0.75</span> <span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">)</span> <span class="p">])</span> \
+    <span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.polygon()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.pushPoints()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="polylines">
+<h2><a class="toc-backref" href="#id9">Polylines</a><a class="headerlink" href="#polylines" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-meth docutils literal"><span class="pre">Workplane.polyline()</span></code> allows creating a shape from a large number of chained points connected by lines.</p>
+<p>This example uses a polyline to create one half of an i-beam shape, which is mirrored to create the final profile.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,(</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">-</span> <span class="n">t</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,(</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="o">-</span><span class="n">t</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,(</span><span class="n">t</span> <span class="o">-</span> <span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,(</span><span class="n">t</span> <span class="o">-</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span><span class="n">H</span><span class="o">/-</span><span class="mf">2.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="o">/-</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">polyline</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="o">.</span><span class="n">mirrorY</span><span class="p">()</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.polyline()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.mirrorY()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="defining-an-edge-with-a-spline">
+<h2><a class="toc-backref" href="#id10">Defining an Edge with a Spline</a><a class="headerlink" href="#defining-an-edge-with-a-spline" title="Permalink to this headline">¶</a></h2>
+<p>This example defines a side using a spline curve through a collection of points. Useful when you have an edge that
+needs a complex profile</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span>
+<span class="n">sPnts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mf">2.75</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">spline</span><span class="p">(</span><span class="n">sPnts</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.spline()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.close()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.lineTo()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="mirroring-symmetric-geometry">
+<h2><a class="toc-backref" href="#id11">Mirroring Symmetric Geometry</a><a class="headerlink" href="#mirroring-symmetric-geometry" title="Permalink to this headline">¶</a></h2>
+<p>You can mirror 2-d geometry when your shape is symmetric.  In this example we also
+introduce horizontal and vertical lines, which make for slightly easier coding.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hLine</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>                            <span class="c1"># 1.0 is the distance, not coordinate</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">vLine</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">hLine</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">vLine</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">hLineTo</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>      <span class="c1"># hLineTo allows using xCoordinate not distance</span>
+<span class="n">result</span> <span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">mirrorY</span><span class="p">()</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.25</span> <span class="p">)</span>                           <span class="c1"># mirror the geometry and extrude</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.hLine()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.vLine()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.hLineTo()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.mirrorY()</span></code> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.mirrorX()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="mirroring-3d-objects">
+<h2><a class="toc-backref" href="#id12">Mirroring 3D Objects</a><a class="headerlink" href="#mirroring-3d-objects" title="Permalink to this headline">¶</a></h2>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result0</span> <span class="o">=</span> <span class="p">(</span><span class="n">cadquery</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">3.9393</span><span class="p">,</span><span class="mf">0.4393</span><span class="p">),(</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">3.0607</span><span class="p">,</span><span class="mf">2.5607</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">0.4393</span><span class="p">,</span><span class="mf">3.4393</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">4.5</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">13.5</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">0.4393</span><span class="p">,</span><span class="mf">14.5607</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mf">13.5</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mf">13.5</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mf">11.5</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span><span class="mf">11.5</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mf">13.2</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">14.5</span><span class="p">,</span><span class="mf">13.2</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">14.5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">10</span> <span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span><span class="mf">13.2</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">13.2</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">5.793</span><span class="p">,</span><span class="mf">1.293</span><span class="p">),(</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">close</span><span class="p">())</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result0</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">rotate</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">90</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">val</span><span class="p">()</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">()</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">mirXY_neg</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">mirrorPlane</span><span class="o">=</span><span class="s2">&quot;XY&quot;</span><span class="p">,</span> <span class="n">basePointVector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">))</span>
+<span class="n">mirXY_pos</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">mirrorPlane</span><span class="o">=</span><span class="s2">&quot;XY&quot;</span><span class="p">,</span> <span class="n">basePointVector</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="n">mirZY_neg</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">mirrorPlane</span><span class="o">=</span><span class="s2">&quot;ZY&quot;</span><span class="p">,</span> <span class="n">basePointVector</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">mirZY_pos</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">mirrorPlane</span><span class="o">=</span><span class="s2">&quot;ZY&quot;</span><span class="p">,</span> <span class="n">basePointVector</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">mirXY_neg</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">mirXY_pos</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">mirZY_neg</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">mirZY_pos</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.moveTo()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.lineTo()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.threePointArc()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.mirror()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.union()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.rotate()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="creating-workplanes-on-faces">
+<h2><a class="toc-backref" href="#id13">Creating Workplanes on Faces</a><a class="headerlink" href="#creating-workplanes-on-faces" title="Permalink to this headline">¶</a></h2>
+<p>This example shows how to locate a new workplane on the face of a previously created feature.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using workplanes in this way are a key feature of CadQuery.  Unlike typical 3d scripting language,
+using work planes frees you from tracking the position of various features in variables, and
+allows the model to adjust itself with removing redundant dimensions</p>
+</div>
+<p>The <code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code> method allows you to select the faces of a resulting solid. It accepts
+a selector string or object, that allows you to target a single face, and make a workplane oriented on that
+face.</p>
+<p>Keep in mind that the origin of new workplanes are located at the center of a face by default.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>            <span class="c1">#make a basic prism</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>   <span class="c1">#find the top-most face and make a hole</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">StringSyntaxSelector()</span></code> <strong>!</strong></li>
+<li><a class="reference internal" href="selectors.html#selector-reference"><span>String Selectors Reference</span></a> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="locating-a-workplane-on-a-vertex">
+<h2><a class="toc-backref" href="#id14">Locating a Workplane on a vertex</a><a class="headerlink" href="#locating-a-workplane-on-a-vertex" title="Permalink to this headline">¶</a></h2>
+<p>Normally, the <code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code> method requires a face to be selected. But if a vertex is selected
+<strong>immediately after a face</strong>, <code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code> will locate the workplane on the face, with the origin at the vertex instead
+of at the center of the face</p>
+<p>The example also introduces <code class="xref py py-meth docutils literal"><span class="pre">Workplane.cutThruAll()</span></code>, which makes a cut through the entire part, no matter
+how deep the part is</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>                 <span class="c1">#make a basic prism</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">(</span><span class="s2">&quot;&lt;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span>  <span class="c1">#select the lower left vertex and make a workplane</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>                 <span class="c1">#cut the corner out</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cutThruAll()</span></code> <strong>!</strong></li>
+<li><a class="reference internal" href="selectors.html#selector-reference"><span>String Selectors Reference</span></a> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.vertices()</span></code> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">StringSyntaxSelector()</span></code> <strong>!</strong></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="offset-workplanes">
+<h2><a class="toc-backref" href="#id15">Offset Workplanes</a><a class="headerlink" href="#offset-workplanes" title="Permalink to this headline">¶</a></h2>
+<p>Workplanes do not have to lie exactly on a face. When you make a workplane, you can define it at an offset
+from an existing face.</p>
+<p>This example uses an offset workplane to make a compound object, which is perfectly valid!</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>                 <span class="c1">#make a basic prism</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&lt;X&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>       <span class="c1">#workplane is offset from the object surface</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>                 <span class="c1">#disc</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+<li><a class="reference internal" href="selectors.html#selector-reference"><span>String Selectors Reference</span></a> <strong>!</strong></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="rotated-workplanes">
+<h2><a class="toc-backref" href="#id16">Rotated Workplanes</a><a class="headerlink" href="#rotated-workplanes" title="Permalink to this headline">¶</a></h2>
+<p>You can create a rotated work plane by specifying angles of rotation relative to another workplane</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span>  \
+     <span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">cq</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span><span class="n">rotate</span><span class="o">=</span><span class="n">cq</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> \
+     <span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.transformed()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="using-construction-geometry">
+<h2><a class="toc-backref" href="#id17">Using construction Geometry</a><a class="headerlink" href="#using-construction-geometry" title="Permalink to this headline">¶</a></h2>
+<p>You can draw shapes to use the vertices as points to locate other features.  Features that are used to
+locate other features, rather than to create them, are called <code class="docutils literal"><span class="pre">Construction</span> <span class="pre">Geometry</span></code></p>
+<p>In the example below, a rectangle is drawn, and its vertices are used to locate a set of holes.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="mf">0.125</span> <span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code> (forConstruction=True)</li>
+<li><a class="reference internal" href="selectors.html#selector-reference"><span>String Selectors Reference</span></a></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.hole()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="shelling-to-create-thin-features">
+<h2><a class="toc-backref" href="#id18">Shelling To Create Thin features</a><a class="headerlink" href="#shelling-to-create-thin-features" title="Permalink to this headline">¶</a></h2>
+<p>Shelling converts a solid object into a shell of uniform thickness.  To shell an object, one or more faces
+are removed, and then the inside of the solid is &#8216;hollowed out&#8217; to make the shell.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;+Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shell</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.shell()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="making-lofts">
+<h2><a class="toc-backref" href="#id19">Making Lofts</a><a class="headerlink" href="#making-lofts" title="Permalink to this headline">¶</a></h2>
+<p>A loft is a solid swept through a set of wires. This example creates lofted section between a rectangle
+and a circular section.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">loft</span><span class="p">(</span><span class="n">combine</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.loft()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="making-counter-bored-and-counter-sunk-holes">
+<h2><a class="toc-backref" href="#id20">Making Counter-bored and counter-sunk holes</a><a class="headerlink" href="#making-counter-bored-and-counter-sunk-holes" title="Permalink to this headline">¶</a></h2>
+<p>Counterbored and countersunk holes are so common that CadQuery creates macros to create them in a single step.</p>
+<p>Similar to <code class="xref py py-meth docutils literal"><span class="pre">Workplane.hole()</span></code> , these functions operate on a list of points as well as a single point.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="n">cq</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">XY</span><span class="p">())</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="o">.</span><span class="n">cboreHole</span><span class="p">(</span><span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cboreHole()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cskHole()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.vertices()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="rounding-corners-with-fillet">
+<h2><a class="toc-backref" href="#id21">Rounding Corners with Fillet</a><a class="headerlink" href="#rounding-corners-with-fillet" title="Permalink to this headline">¶</a></h2>
+<p>Filleting is done by selecting the edges of a solid, and using the fillet function.</p>
+<p>Here we fillet all of the edges of a simple plate.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span> <span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;|Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.fillet()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.edges()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="a-parametric-bearing-pillow-block">
+<h2><a class="toc-backref" href="#id22">A Parametric Bearing Pillow Block</a><a class="headerlink" href="#a-parametric-bearing-pillow-block" title="Permalink to this headline">¶</a></h2>
+<p>Combining a few basic functions, its possible to make a very good parametric bearing pillow block,
+with just a few lines of code.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">bearing_diam</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span><span class="n">padding</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">thickness</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="n">bearing_diam</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="n">padding</span><span class="p">,</span><span class="n">height</span><span class="o">-</span><span class="n">padding</span><span class="p">,</span><span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="o">.</span><span class="n">cboreHole</span><span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="splitting-an-object">
+<h2><a class="toc-backref" href="#id23">Splitting an Object</a><a class="headerlink" href="#splitting-an-object" title="Permalink to this headline">¶</a></h2>
+<p>You can split an object using a workplane, and retain either or both halves</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="c1">#now cut it in half sideways</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">keepTop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.split()</span></code> <strong>!</strong></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cutThruAll()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="the-classic-occ-bottle">
+<h2><a class="toc-backref" href="#id24">The Classic OCC Bottle</a><a class="headerlink" href="#the-classic-occ-bottle" title="Permalink to this headline">¶</a></h2>
+<p>CadQuery is based on the OpenCascade.org (OCC) modeling Kernel.  Those who are familiar with OCC know about the
+famous &#8216;bottle&#8217; example. <a class="reference external" href="http://www.opencascade.org/org/gettingstarted/appli/">http://www.opencascade.org/org/gettingstarted/appli/</a></p>
+<dl class="docutils">
+<dt>A pythonOCC version is listed here</dt>
+<dd><a class="reference external" href="http://code.google.com/p/pythonocc/source/browse/trunk/src/examples/Tools/InteractiveViewer/scripts/Bottle.py?r=1046">http://code.google.com/p/pythonocc/source/browse/trunk/src/examples/Tools/InteractiveViewer/scripts/Bottle.py?r=1046</a></dd>
+</dl>
+<p>Of course one difference between this sample and the OCC version is the length. This sample is one of the longer
+ones at 13 lines, but that&#8217;s very short compared to the pythonOCC version, which is 10x longer!</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span>
+
+<span class="c1">#draw half the profile of the bottle and extrude it</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">vLine</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="n">L</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">t</span><span class="p">),(</span><span class="n">L</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="mf">2.0</span><span class="p">))</span><span class="o">.</span><span class="n">vLine</span><span class="p">(</span><span class="o">-</span><span class="n">w</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">mirrorX</span><span class="p">()</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">30.0</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">#make the neck</span>
+<span class="n">p</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">#make a shell</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shell</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.mirrorX()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.threePointArc()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.workplane()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.vertices()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.vLine()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.faces()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="a-parametric-enclosure">
+<h2><a class="toc-backref" href="#id25">A Parametric Enclosure</a><a class="headerlink" href="#a-parametric-enclosure" title="Permalink to this headline">¶</a></h2>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#parameter definitions</span>
+<span class="n">p_outerWidth</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="c1">#Outer width of box enclosure</span>
+<span class="n">p_outerLength</span> <span class="o">=</span> <span class="mf">150.0</span> <span class="c1">#Outer length of box enclosure</span>
+<span class="n">p_outerHeight</span> <span class="o">=</span> <span class="mf">50.0</span> <span class="c1">#Outer height of box enclosure</span>
+
+<span class="n">p_thickness</span> <span class="o">=</span>  <span class="mf">3.0</span> <span class="c1">#Thickness of the box walls</span>
+<span class="n">p_sideRadius</span> <span class="o">=</span>  <span class="mf">10.0</span> <span class="c1">#Radius for the curves around the sides of the bo</span>
+<span class="n">p_topAndBottomRadius</span> <span class="o">=</span>  <span class="mf">2.0</span> <span class="c1">#Radius for the curves on the top and bottom edges of the box</span>
+
+<span class="n">p_screwpostInset</span> <span class="o">=</span> <span class="mf">12.0</span> <span class="c1">#How far in from the edges the screwposts should be place.</span>
+<span class="n">p_screwpostID</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="c1">#nner Diameter of the screwpost holes, should be roughly screw diameter not including threads</span>
+<span class="n">p_screwpostOD</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="c1">#Outer Diameter of the screwposts.\nDetermines overall thickness of the posts</span>
+
+<span class="n">p_boreDiameter</span> <span class="o">=</span> <span class="mf">8.0</span> <span class="c1">#Diameter of the counterbore hole, if any</span>
+<span class="n">p_boreDepth</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1">#Depth of the counterbore hole, if</span>
+<span class="n">p_countersinkDiameter</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#Outer diameter of countersink.  Should roughly match the outer diameter of the screw head</span>
+<span class="n">p_countersinkAngle</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="c1">#Countersink angle (complete angle between opposite sides, not from center to one side)</span>
+<span class="n">p_flipLid</span> <span class="o">=</span> <span class="bp">True</span> <span class="c1">#Whether to place the lid with the top facing down or not.</span>
+<span class="n">p_lipHeight</span> <span class="o">=</span>  <span class="mf">1.0</span> <span class="c1">#Height of lip on the underside of the lid.\nSits inside the box body for a snug fit.</span>
+
+<span class="c1">#outer shell</span>
+<span class="n">oshell</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">p_outerWidth</span><span class="p">,</span><span class="n">p_outerLength</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">p_outerHeight</span> <span class="o">+</span> <span class="n">p_lipHeight</span><span class="p">)</span>
+
+<span class="c1">#weird geometry happens if we make the fillets in the wrong order</span>
+<span class="k">if</span> <span class="n">p_sideRadius</span> <span class="o">&gt;</span> <span class="n">p_topAndBottomRadius</span><span class="p">:</span>
+    <span class="n">oshell</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;|Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">p_sideRadius</span><span class="p">)</span>
+    <span class="n">oshell</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;#Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">p_topAndBottomRadius</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">oshell</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;#Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">p_topAndBottomRadius</span><span class="p">)</span>
+    <span class="n">oshell</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;|Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">p_sideRadius</span><span class="p">)</span>
+
+<span class="c1">#inner shell</span>
+<span class="n">ishell</span> <span class="o">=</span> <span class="n">oshell</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&lt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">p_thickness</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">rect</span><span class="p">((</span><span class="n">p_outerWidth</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span> <span class="n">p_thickness</span><span class="p">),(</span><span class="n">p_outerLength</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">p_thickness</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">extrude</span><span class="p">((</span><span class="n">p_outerHeight</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">p_thickness</span><span class="p">),</span><span class="bp">False</span><span class="p">)</span> <span class="c1">#set combine false to produce just the new boss</span>
+<span class="n">ishell</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="s2">&quot;|Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">p_sideRadius</span> <span class="o">-</span> <span class="n">p_thickness</span><span class="p">)</span>
+
+<span class="c1">#make the box outer box</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">oshell</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">ishell</span><span class="p">)</span>
+
+<span class="c1">#make the screwposts</span>
+<span class="n">POSTWIDTH</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_outerWidth</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">p_screwpostInset</span><span class="p">)</span>
+<span class="n">POSTLENGTH</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_outerLength</span>  <span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">p_screwpostInset</span><span class="p">)</span>
+
+<span class="n">postCenters</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="o">-</span><span class="n">p_thickness</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">POSTWIDTH</span><span class="p">,</span><span class="n">POSTLENGTH</span><span class="p">,</span><span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">postCenters</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+   <span class="n">v</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">p_screwpostOD</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">p_screwpostID</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">extrude</span><span class="p">((</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p_outerHeight</span> <span class="o">+</span> <span class="n">p_lipHeight</span> <span class="o">-</span><span class="n">p_thickness</span> <span class="p">),</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">#split lid into top and bottom parts</span>
+<span class="p">(</span><span class="n">lid</span><span class="p">,</span><span class="n">bottom</span><span class="p">)</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="o">-</span><span class="n">p_thickness</span> <span class="o">-</span><span class="n">p_lipHeight</span> <span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">keepTop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">keepBottom</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>  <span class="c1">#splits into two solids</span>
+
+<span class="c1">#translate the lid, and subtract the bottom from it to produce the lid inset</span>
+<span class="n">lowerLid</span> <span class="o">=</span> <span class="n">lid</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">p_lipHeight</span><span class="p">))</span>
+<span class="n">cutlip</span> <span class="o">=</span> <span class="n">lowerLid</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="n">p_outerWidth</span> <span class="o">+</span> <span class="n">p_thickness</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">p_thickness</span> <span class="o">-</span> <span class="n">p_outerHeight</span> <span class="o">+</span> <span class="n">p_lipHeight</span><span class="p">))</span>
+
+<span class="c1">#compute centers for counterbore/countersink or counterbore</span>
+<span class="n">topOfLidCenters</span> <span class="o">=</span> <span class="n">cutlip</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">POSTWIDTH</span><span class="p">,</span><span class="n">POSTLENGTH</span><span class="p">,</span><span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
+
+<span class="c1">#add holes of the desired type</span>
+<span class="k">if</span> <span class="n">p_boreDiameter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p_boreDepth</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">topOfLid</span> <span class="o">=</span> <span class="n">topOfLidCenters</span><span class="o">.</span><span class="n">cboreHole</span><span class="p">(</span><span class="n">p_screwpostID</span><span class="p">,</span><span class="n">p_boreDiameter</span><span class="p">,</span><span class="n">p_boreDepth</span><span class="p">,(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">p_thickness</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">p_countersinkDiameter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p_countersinkAngle</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">topOfLid</span> <span class="o">=</span> <span class="n">topOfLidCenters</span><span class="o">.</span><span class="n">cskHole</span><span class="p">(</span><span class="n">p_screwpostID</span><span class="p">,</span><span class="n">p_countersinkDiameter</span><span class="p">,</span><span class="n">p_countersinkAngle</span><span class="p">,(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">p_thickness</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">topOfLid</span><span class="o">=</span> <span class="n">topOfLidCenters</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="n">p_screwpostID</span><span class="p">,(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">p_thickness</span><span class="p">)</span>
+
+<span class="c1">#flip lid upside down if desired</span>
+<span class="k">if</span> <span class="n">p_flipLid</span><span class="p">:</span>
+    <span class="n">topOfLid</span><span class="o">.</span><span class="n">rotateAboutCenter</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1">#return the combined result</span>
+<span class="n">result</span> <span class="o">=</span><span class="n">topOfLid</span><span class="o">.</span><span class="n">combineSolids</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Api References</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.circle()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rect()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.extrude()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.box()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.all()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.faces()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.vertices()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.edges()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">CQ.workplane()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.fillet()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cut()</span></code></li>
+</ul>
+</td><td><ul class="simple">
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.combineSolids()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.rotateAboutCenter()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cboreHole()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.cskHole()</span></code></li>
+<li><code class="xref py py-meth docutils literal"><span class="pre">Workplane.hole()</span></code></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+<div class="section" id="lego-brick">
+<h2><a class="toc-backref" href="#id26">Lego Brick</a><a class="headerlink" href="#lego-brick" title="Permalink to this headline">¶</a></h2>
+<p>This script will produce any size regular rectangular Lego(TM) brick. Its only tricky because of the logic
+regarding the underside of the brick.</p>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1">#####</span>
+<span class="c1"># Inputs</span>
+<span class="c1">######</span>
+<span class="n">lbumps</span> <span class="o">=</span> <span class="mi">6</span>       <span class="c1"># number of bumps long</span>
+<span class="n">wbumps</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># number of bumps wide</span>
+<span class="n">thin</span> <span class="o">=</span> <span class="bp">True</span>      <span class="c1"># True for thin, False for thick</span>
+
+<span class="c1">#</span>
+<span class="c1"># Lego Brick Constants-- these make a lego brick a lego :)</span>
+<span class="c1">#</span>
+<span class="n">pitch</span> <span class="o">=</span> <span class="mf">8.0</span>
+<span class="n">clearance</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">bumpDiam</span> <span class="o">=</span> <span class="mf">4.8</span>
+<span class="n">bumpHeight</span> <span class="o">=</span> <span class="mf">1.8</span>
+<span class="k">if</span> <span class="n">thin</span><span class="p">:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mf">3.2</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mf">9.6</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">pitch</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">clearance</span><span class="p">)</span> <span class="o">-</span> <span class="n">bumpDiam</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">postDiam</span> <span class="o">=</span> <span class="n">pitch</span> <span class="o">-</span> <span class="n">t</span>  <span class="c1"># works out to 6.5</span>
+<span class="n">total_length</span> <span class="o">=</span> <span class="n">lbumps</span><span class="o">*</span><span class="n">pitch</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">clearance</span>
+<span class="n">total_width</span> <span class="o">=</span> <span class="n">wbumps</span><span class="o">*</span><span class="n">pitch</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">clearance</span>
+
+<span class="c1"># make the base</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">total_length</span><span class="p">,</span> <span class="n">total_width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+<span class="c1"># shell inwards not outwards</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&lt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shell</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># make the bumps on the top</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&gt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span><span class="o">.</span> \
+    <span class="n">rarray</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">lbumps</span><span class="p">,</span> <span class="n">wbumps</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">bumpDiam</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">bumpHeight</span><span class="p">)</span>
+
+<span class="c1"># add posts on the bottom. posts are different diameter depending on geometry</span>
+<span class="c1"># solid studs for 1 bump, tubes for multiple, none for 1x1</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s2">&quot;&lt;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">lbumps</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">wbumps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">rarray</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">lbumps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wbumps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span> \
+        <span class="n">circle</span><span class="p">(</span><span class="n">postDiam</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">bumpDiam</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">lbumps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">rarray</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">lbumps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span> \
+        <span class="n">circle</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">wbumps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">rarray</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wbumps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span> \
+        <span class="n">circle</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span>
+
+<span class="c1"># Render the solid</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="braille-example">
+<h2><a class="toc-backref" href="#id27">Braille Example</a><a class="headerlink" href="#braille-example" title="Permalink to this headline">¶</a></h2>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 44, in cq_directive    raise result.exceptionValueError: Provided value XY is not a valid work plane
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+
+<span class="c1"># text_lines is a list of text lines.</span>
+<span class="c1"># FreeCAD in braille (converted with braille-converter:</span>
+<span class="c1"># https://github.com/jpaugh/braille-converter.git).</span>
+<span class="n">text_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;⠠ ⠋ ⠗ ⠑ ⠑ ⠠ ⠉ ⠠ ⠁ ⠠ ⠙&#39;</span><span class="p">]</span>
+<span class="c1"># See http://www.tiresias.org/research/reports/braille_cell.htm for examples</span>
+<span class="c1"># of braille cell geometry.</span>
+<span class="n">horizontal_interdot</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">vertical_interdot</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">horizontal_intercell</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">vertical_interline</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dot_height</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">dot_diameter</span> <span class="o">=</span> <span class="mf">1.3</span>
+
+<span class="n">base_thickness</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="c1"># End of configuration.</span>
+<span class="n">BrailleCellGeometry</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;BrailleCellGeometry&#39;</span><span class="p">,</span>
+                                 <span class="p">(</span><span class="s1">&#39;horizontal_interdot&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;vertical_interdot&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;intercell&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;interline&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;dot_height&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;dot_diameter&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;({}, {})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">brailleToPoints</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="c1"># Unicode bit pattern (cf. https://en.wikipedia.org/wiki/Braille_Patterns).</span>
+    <span class="n">mask1</span> <span class="o">=</span> <span class="mb">0b00000001</span>
+    <span class="n">mask2</span> <span class="o">=</span> <span class="mb">0b00000010</span>
+    <span class="n">mask3</span> <span class="o">=</span> <span class="mb">0b00000100</span>
+    <span class="n">mask4</span> <span class="o">=</span> <span class="mb">0b00001000</span>
+    <span class="n">mask5</span> <span class="o">=</span> <span class="mb">0b00010000</span>
+    <span class="n">mask6</span> <span class="o">=</span> <span class="mb">0b00100000</span>
+    <span class="n">mask7</span> <span class="o">=</span> <span class="mb">0b01000000</span>
+    <span class="n">mask8</span> <span class="o">=</span> <span class="mb">0b10000000</span>
+    <span class="n">masks</span> <span class="o">=</span> <span class="p">(</span><span class="n">mask1</span><span class="p">,</span> <span class="n">mask2</span><span class="p">,</span> <span class="n">mask3</span><span class="p">,</span> <span class="n">mask4</span><span class="p">,</span> <span class="n">mask5</span><span class="p">,</span> <span class="n">mask6</span><span class="p">,</span> <span class="n">mask7</span><span class="p">,</span> <span class="n">mask8</span><span class="p">)</span>
+
+    <span class="c1"># Corresponding dot position</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">horizontal_interdot</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">vertical_interdot</span>
+    <span class="n">pos1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">pos2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">pos3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pos4</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">pos5</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">pos6</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pos7</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">pos8</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">pos3</span><span class="p">,</span> <span class="n">pos4</span><span class="p">,</span> <span class="n">pos5</span><span class="p">,</span> <span class="n">pos6</span><span class="p">,</span> <span class="n">pos7</span><span class="p">,</span> <span class="n">pos8</span><span class="p">)</span>
+
+    <span class="c1"># Braille blank pattern (u&#39;\u2800&#39;).</span>
+    <span class="n">blank</span> <span class="o">=</span> <span class="s1">&#39;⠀&#39;</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Position of dot1 along the x-axis (horizontal).</span>
+    <span class="n">character_origin</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+            <span class="n">delta_to_blank</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="n">blank</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&amp;</span> <span class="n">delta_to_blank</span><span class="p">):</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">Point</span><span class="p">(</span><span class="n">character_origin</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">character_origin</span> <span class="o">+=</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">intercell</span>
+    <span class="k">return</span> <span class="n">points</span>
+
+
+<span class="k">def</span> <span class="nf">get_plate_height</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="c1"># cell_geometry.vertical_interdot is also used as space between base</span>
+    <span class="c1"># borders and characters.</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">vertical_interdot</span> <span class="o">+</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">vertical_interdot</span> <span class="o">+</span>
+            <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">text_lines</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">interline</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_plate_width</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="c1"># cell_geometry.horizontal_interdot is also used as space between base</span>
+    <span class="c1"># borders and characters.</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">text_lines</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">horizontal_interdot</span> <span class="o">+</span>
+            <span class="n">cell_geometry</span><span class="o">.</span><span class="n">horizontal_interdot</span> <span class="o">+</span>
+            <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">intercell</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_cylinder_radius</span><span class="p">(</span><span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the radius the cylinder should have</span>
+<span class="sd">    The cylinder have the same radius as the half-sphere make the dots (the</span>
+<span class="sd">    hidden and the shown part of the dots).</span>
+<span class="sd">    The radius is such that the spherical cap with diameter</span>
+<span class="sd">    cell_geometry.dot_diameter has a height of cell_geometry.dot_height.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">dot_height</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">dot_diameter</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">r</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">h</span>
+
+
+<span class="k">def</span> <span class="nf">get_base_plate_thickness</span><span class="p">(</span><span class="n">plate_thickness</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the height on which the half spheres will sit&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">plate_thickness</span> <span class="o">+</span>
+            <span class="n">get_cylinder_radius</span><span class="p">(</span><span class="n">cell_geometry</span><span class="p">)</span> <span class="o">-</span>
+            <span class="n">cell_geometry</span><span class="o">.</span><span class="n">dot_height</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_base</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">,</span> <span class="n">plate_thickness</span><span class="p">):</span>
+    <span class="n">base_width</span> <span class="o">=</span> <span class="n">get_plate_width</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">base_height</span> <span class="o">=</span> <span class="n">get_plate_height</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">base_thickness</span> <span class="o">=</span> <span class="n">get_base_plate_thickness</span><span class="p">(</span><span class="n">plate_thickness</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s1">&#39;XY&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">base_width</span><span class="p">,</span> <span class="n">base_height</span><span class="p">,</span> <span class="n">base_thickness</span><span class="p">,</span>
+                                  <span class="n">centered</span><span class="o">=</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">base</span>
+
+
+<span class="k">def</span> <span class="nf">make_embossed_plate</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Make an embossed plate with dots as spherical caps</span>
+<span class="sd">    Method:</span>
+<span class="sd">        - make a thin plate on which sit cylinders</span>
+<span class="sd">        - fillet the upper edge of the cylinders so to get pseudo half-spheres</span>
+<span class="sd">        - make the union with a thicker plate so that only the sphere caps stay</span>
+<span class="sd">          &quot;visible&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">make_base</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">,</span> <span class="n">base_thickness</span><span class="p">)</span>
+
+    <span class="n">dot_pos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">base_width</span> <span class="o">=</span> <span class="n">get_plate_width</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">base_height</span> <span class="o">=</span> <span class="n">get_plate_height</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">base_height</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">cell_geometry</span><span class="o">.</span><span class="n">vertical_interdot</span>
+    <span class="n">line_start_pos</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">cell_geometry</span><span class="o">.</span><span class="n">horizontal_interdot</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">text_lines</span><span class="p">:</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="n">brailleToPoints</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">cell_geometry</span><span class="p">)</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">line_start_pos</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">]</span>
+        <span class="n">dot_pos</span> <span class="o">+=</span> <span class="n">dots</span>
+        <span class="n">line_start_pos</span> <span class="o">+=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">cell_geometry</span><span class="o">.</span><span class="n">interline</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">get_cylinder_radius</span><span class="p">(</span><span class="n">cell_geometry</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s1">&#39;&gt;Z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">(</span><span class="s1">&#39;&lt;XY&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">workplane</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">pushPoints</span><span class="p">(</span><span class="n">dot_pos</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">extrude</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="c1"># Make a fillet almost the same radius to get a pseudo spherical cap.</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="s1">&#39;&gt;Z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">hidding_box</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s1">&#39;XY&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">base_width</span><span class="p">,</span> <span class="n">base_height</span><span class="p">,</span> <span class="n">base_thickness</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">hidding_box</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">_cell_geometry</span> <span class="o">=</span> <span class="n">BrailleCellGeometry</span><span class="p">(</span>
+    <span class="n">horizontal_interdot</span><span class="p">,</span>
+    <span class="n">vertical_interdot</span><span class="p">,</span>
+    <span class="n">horizontal_intercell</span><span class="p">,</span>
+    <span class="n">vertical_interline</span><span class="p">,</span>
+    <span class="n">dot_height</span><span class="p">,</span>
+    <span class="n">dot_diameter</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">base_thickness</span> <span class="o">&lt;</span> <span class="n">get_cylinder_radius</span><span class="p">(</span><span class="n">_cell_geometry</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Base thickness should be at least {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dot_height</span><span class="p">))</span>
+
+<span class="n">show_object</span><span class="p">(</span><span class="n">make_embossed_plate</span><span class="p">(</span><span class="n">text_lines</span><span class="p">,</span> <span class="n">_cell_geometry</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="panel-with-various-connector-holes">
+<h2><a class="toc-backref" href="#id28">Panel With Various Connector Holes</a><a class="headerlink" href="#panel-with-various-connector-holes" title="Permalink to this headline">¶</a></h2>
+<div class="cq" style="text-align:left;float:left;">
+    Traceback (most recent call last):  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/cq_directive.py", line 41, in cq_directive    exporters.exportShape(result.first_result.shape, "SVG", _s)  File "/home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/cadquery-0.0.0-py2.7.egg/cadquery/freecad_impl/exporters.py", line 67, in exportShape    fileLike.write(getSVG(shape.wrapped))TypeError: unicode argument expected, got 'str'
+</div>
+<div style="clear:both;">
+</div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># The dimensions of the model. These can be modified rather than changing the</span>
+<span class="c1"># object&#39;s code directly.</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">thickness</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Create a plate with two polygons cut through it</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;front&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span>
+
+<span class="n">h_sep</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">157</span><span class="p">,</span><span class="mi">210</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">157</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">16.65</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">16.65</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">10.1889</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">12.59306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">13.5889</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">13.40416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">13.40416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">13.5889</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">12.59306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">10.1889</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="n">h_sep4DB9</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">91</span><span class="p">,</span><span class="mi">225</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep4DB9</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">210</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">16.65</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">16.65</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">10.1889</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">12.59306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">13.5889</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">13.40416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">13.40416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">13.5889</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">12.59306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">10.1889</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mi">41</span><span class="p">,</span><span class="mi">225</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep4DB9</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mi">107</span><span class="p">,</span><span class="mi">210</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">23.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">17.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">20.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">21.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">20.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">19.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">17.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mi">107</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mf">24.7487</span><span class="p">,</span><span class="mf">24.7487</span><span class="p">,</span> <span class="n">forConstruction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="o">.</span><span class="n">hole</span><span class="p">(</span><span class="mf">3.2</span><span class="p">)</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mi">173</span><span class="p">,</span><span class="mi">225</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep4DB9</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="o">-</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="o">-</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">6.85</span><span class="p">,</span><span class="mf">5.7</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">9.25416</span><span class="p">,</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">10.25</span><span class="p">,</span><span class="mf">2.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">9.438896</span><span class="p">,</span><span class="o">-</span><span class="mf">2.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">8.44306</span><span class="p">,</span><span class="o">-</span><span class="mf">4.70416</span><span class="p">),(</span><span class="mf">6.038896</span><span class="p">,</span><span class="o">-</span><span class="mf">5.7</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">workplane</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">centerOption</span><span class="o">=</span><span class="s1">&#39;CenterOfBoundBox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="o">-</span><span class="mi">173</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="n">idx</span><span class="o">*</span><span class="n">h_sep</span><span class="p">)</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="o">-</span><span class="mf">2.9176</span><span class="p">,</span><span class="o">-</span><span class="mf">5.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="o">-</span><span class="mf">6.05</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mf">2.9176</span><span class="p">,</span><span class="mf">5.3</span><span class="p">))</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mf">2.9176</span><span class="p">,</span><span class="mf">5.3</span><span class="p">)</span><span class="o">.</span><span class="n">threePointArc</span><span class="p">((</span><span class="mf">6.05</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">2.9176</span><span class="p">,</span><span class="o">-</span><span class="mf">5.3</span><span class="p">))</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="o">.</span><span class="n">cutThruAll</span><span class="p">()</span>
+
+<span class="c1"># Render the solid</span>
+<span class="n">show_object</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apireference.html" class="btn btn-neutral float-right" title="CadQuery API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fileformat.html" class="btn btn-neutral" title="CadQuery Scripts and Object Output" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Parametric Products Intellectual Holdings LLC, All Rights Reserved.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
